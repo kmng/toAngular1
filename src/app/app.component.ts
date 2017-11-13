@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {Todo} from './todo';
+import {TodoDataService} from './todo-data.service';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +11,26 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 export class AppComponent {
   title = 'app';
   closeResult: string;
-  constructor(private modalService: NgbModal) {}
 
+  newTodo: Todo = new Todo();
+  constructor(private modalService: NgbModal, private todoDataService: TodoDataService) {}
+
+addTodo() {
+    this.todoDataService.addTodo(this.newTodo);
+    this.newTodo = new Todo();
+  }
+
+  toggleTodoComplete(todo) {
+    this.todoDataService.toggleTodoComplete(todo);
+  }
+
+  removeTodo(todo) {
+    this.todoDataService.deleteTodoById(todo.id);
+  }
+
+  get todos() {
+    return this.todoDataService.getAllTodos();
+  }
 
   open(content) {
     this.modalService.open(content).result.then((result) => {
@@ -19,6 +39,7 @@ export class AppComponent {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
+
 
   private getDismissReason(reason: any): string {
    if (reason === ModalDismissReasons.ESC) {
