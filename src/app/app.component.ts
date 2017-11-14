@@ -12,19 +12,19 @@ export class AppComponent {
   title = 'app';
   closeResult: string;
 
-  newTodo: Todo = new Todo();
   constructor(private modalService: NgbModal, private todoDataService: TodoDataService) {}
 
-addTodo() {
-    this.todoDataService.addTodo(this.newTodo);
-    this.newTodo = new Todo();
+addTodo(todo:Todo) {
+  console.log(todo);
+    this.todoDataService.addTodo(todo);
   }
 
-  toggleTodoComplete(todo) {
+  onToggleTodoComplete(todo: Todo) {
     this.todoDataService.toggleTodoComplete(todo);
   }
 
-  removeTodo(todo) {
+
+  onRemoveTodo(todo: Todo) {
     this.todoDataService.deleteTodoById(todo.id);
   }
 

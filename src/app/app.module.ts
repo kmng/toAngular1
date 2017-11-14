@@ -7,13 +7,21 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FooterComponent } from './footer/footer.component';
 
 import {TodoDataService} from './todo-data.service';
+import { TodoListHeaderComponent } from './todo-list-header/todo-list-header.component';
+import { TodoListComponent } from './todo-list/todo-list.component';
+import { TodoListItemComponent } from './todo-list-item/todo-list-item.component';
+import { TodoListFooterComponent } from './todo-list-footer/todo-list-footer.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AppNavbarComponent,
-    FooterComponent
+    FooterComponent,
+    TodoListHeaderComponent,
+    TodoListComponent,
+    TodoListItemComponent,
+    TodoListFooterComponent
   ],
   imports: [
     BrowserModule,
