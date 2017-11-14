@@ -5,7 +5,7 @@
 <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
 
 <section class="todoapp">
-<app-todo-list-header (add)="addTodo($event)"></app-todo-list-header>
+<app-todo-list-header (add)="onAddTodo($event)"></app-todo-list-header>
 <app-todo-list [todos]="todos" (toggleComplete)="onToggleTodoComplete($event)"
                  (remove)="onRemoveTodo($event)"></app-todo-list>
 
