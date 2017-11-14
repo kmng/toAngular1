@@ -1,0 +1,4 @@
+Any host
+ng serve --host=0.0.0.0  
+No refresh nor checkingy
+ng serve --host=0.0.0.0  --live-reload false
