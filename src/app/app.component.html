@@ -4,15 +4,13 @@
     <h1>Bootstrap starter template</h1>
     <p class="lead">Use this document as a way to quickly start any new project.<br>
       All you get is this text and a mostly barebones HTML document.</p>
+    <div *ngIf="authenticated"><app-todo-list-app></app-todo-list-app></div> 
+    <div *ngIf="!authenticated">Login</div> 
+    
     <ngb-tabset>
       <ngb-tab title="Simple">
         <ng-template ngbTabContent>
-          <section class="todoapp">
-            <app-todo-list-header (add)="onAddTodo($event)"></app-todo-list-header>
-            <app-todo-list [todos]="todos" (toggleComplete)="onToggleTodoComplete($event)"
-                 (remove)="onRemoveTodo($event)"></app-todo-list>
-            <app-todo-list-footer [todos]="todos"></app-todo-list-footer>
-          </section>
+          Test tab
         </ng-template>
       </ngb-tab>
       <ngb-tab>

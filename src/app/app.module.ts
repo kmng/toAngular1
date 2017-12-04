@@ -14,6 +14,7 @@ import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoListItemComponent } from './todo-list-item/todo-list-item.component';
 import { TodoListFooterComponent } from './todo-list-footer/todo-list-footer.component';
 import { ApiService } from './api.service';
+import { TodoListAppComponent } from './todo-list-app/todo-list-app.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ApiService } from './api.service';
     TodoListHeaderComponent,
     TodoListComponent,
     TodoListItemComponent,
-    TodoListFooterComponent
+    TodoListFooterComponent,
+    TodoListAppComponent
   ],
   imports: [
     BrowserModule,
