@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { AuthGuard  } from '../auth.guard';
  import { HomeComponent } from '../home/home.component';
   import { LoginComponent } from '../login/login.component';
 
@@ -9,6 +10,7 @@ import { RouterModule, Routes } from '@angular/router';
         {
             path: '',
             component: HomeComponent,
+			canActivate: [AuthGuard]
         },
 		{
             path: 'login',

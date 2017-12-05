@@ -7,6 +7,8 @@ import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FooterComponent } from './footer/footer.component';
 
+import { AuthGuard  } from './auth.guard';
+
 import { AppRoutingModule } from './app-routing/app-routing.module';
 
 import {TodoDataService} from './todo-data.service';
@@ -39,7 +41,7 @@ import { LoginComponent } from './login/login.component';
     HttpModule,
 	AppRoutingModule,
   ],
-  providers: [TodoDataService, ApiService],
+  providers: [TodoDataService, ApiService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
