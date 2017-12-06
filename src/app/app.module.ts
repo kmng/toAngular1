@@ -6,6 +6,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FooterComponent } from './footer/footer.component';
+import { AuthenticationService } from './authentication.service';
 
 import { AuthGuard  } from './auth.guard';
 
@@ -41,7 +42,7 @@ import { LoginComponent } from './login/login.component';
     HttpModule,
 	AppRoutingModule,
   ],
-  providers: [TodoDataService, ApiService,AuthGuard],
+  providers: [TodoDataService, ApiService,AuthGuard,AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

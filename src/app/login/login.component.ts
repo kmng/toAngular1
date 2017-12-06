@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../authentication.service';
+
 
 @Component({
   selector: 'app-login',
@@ -11,12 +14,25 @@ export class LoginComponent implements OnInit {
   loading = false;
   error = '';
 
-  constructor() { }
+  constructor( private router: Router, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
+  	this.authenticationService.logout();
   }
  login() {
- console.log(this.model);
+        this.loading = true;
+        this.authenticationService.login(this.model.username, this.model.password)
+		.subscribe(result => {
+                if (result === true) {
+                    // login successful
+                    this.router.navigate(['/']);
+                } else {
+                    // login failed
+                    this.error = 'Username or password is incorrect';
+                    this.loading = false;
+                }
+            });
+
  }
   
 

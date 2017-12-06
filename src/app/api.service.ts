@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
-import { Http , Response} from '@angular/http';
+import { Http , Headers, RequestOptions,  Response} from '@angular/http';
 import { Todo } from './todo';
 import { Observable } from 'rxjs/Observable';
 
@@ -8,6 +8,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
+import { AuthenticationService } from './authentication.service';
 
 const API_URL = environment.apiUrl;
 
@@ -15,13 +16,16 @@ const API_URL = environment.apiUrl;
 @Injectable()
 export class ApiService {
 
-  constructor( private http: Http ) {
+  constructor( private http: Http ,  private authenticationService: AuthenticationService ) {
   }
 
   // API: GET /todos
-  public getAllTodos(): Observable<Todo[]> {
+  public getAllTodos(): Observable<Todo[]> {    
+    let headers = new Headers({ 'X-Auth-Token': ' ' + this.authenticationService.token });
+    let options = new RequestOptions({ headers: headers });
+		
     return this.http
-    .get(API_URL + '/todos')
+    .get(API_URL + '/todos', options)
     .map(response => {
       const todos = response.json();
       return todos.map((todo) => new Todo(todo));
@@ -31,9 +35,12 @@ export class ApiService {
 
   // API: POST /todos
   public createTodo(todo: Todo): Observable<Todo> {
+  
+     let headers = new Headers({ 'X-Auth-Token': ' ' + this.authenticationService.token });
+    let options = new RequestOptions({ headers: headers });
 
     return this.http
-    .post(API_URL + '/todos', todo)
+    .post(API_URL + '/todos', todo , options)
     .map(response => {
       return new Todo(response.json());
     })
@@ -42,8 +49,10 @@ export class ApiService {
 
   // API: GET /todos/:id
   public getTodoById(todoId: number): Observable<Todo>  {
+    let headers = new Headers({ 'X-Auth-Token': ' ' + this.authenticationService.token });
+    let options = new RequestOptions({ headers: headers });
     return this.http
-     .get(API_URL + '/todos/' + todoId)
+     .get(API_URL + '/todos/' + todoId, options)
      .map(response => {
        return new Todo(response.json());
      })
@@ -52,8 +61,10 @@ export class ApiService {
 
   // API: PUT /todos/:id
   public updateTodo(todo: Todo): Observable<Todo> {
+    let headers = new Headers({ 'X-Auth-Token': ' ' + this.authenticationService.token });
+    let options = new RequestOptions({ headers: headers });
     return this.http
-     .put(API_URL + '/todos/' + todo.id, todo)
+     .put(API_URL + '/todos/' + todo.id, todo, options)
      .map(response => {
        return new Todo(response.json());
      })
@@ -62,8 +73,10 @@ export class ApiService {
 
   // DELETE /todos/:id
   public  deleteTodoById(todoId: number): Observable<null>  {
+    let headers = new Headers({ 'X-Auth-Token': ' ' + this.authenticationService.token });
+    let options = new RequestOptions({ headers: headers });
     return this.http
-    .delete(API_URL + '/todos/' + todoId)
+    .delete(API_URL + '/todos/' + todoId ,options)
     .map(response => null)
     .catch(this.handleError);
   }
